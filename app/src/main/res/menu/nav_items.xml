@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@mipmap/ic_home_black_24dp"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_quests"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="Quests" />
+
+    <item
+        android:id="@+id/nav_equip"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="Equipment" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="Levels" />
+</menu>
