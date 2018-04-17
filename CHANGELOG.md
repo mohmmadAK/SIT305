@@ -8,17 +8,17 @@ The format is based on http://keepachangelog.com/en/1.0.0/ and this project adhe
 
 Added
 
-Game Model class files added
-README file updated
-ChangeLogFile added and updated
+- Game Model class files added
+- README file updated
+- ChangeLogFile added and updated
 
 
 0.0.1 - 2018-03-31
 
 Added
 
-Android project structure files
-app/src files
-app/res resources files
-README file added
-Added the first version of the User Interface design xml files
+- Android project structure files
+- app/src files
+- app/res resources files
+- README file added
+- Added the first version of the User Interface design xml files
