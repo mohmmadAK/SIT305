@@ -11,6 +11,7 @@ Added
 - Game Model class files added
 - README file updated
 - ChangeLogFile added and updated
+- Added license file
 
 
 0.0.1 - 2018-03-31
