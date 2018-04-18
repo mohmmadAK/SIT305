@@ -23,7 +23,7 @@ Group Project - Android RPG
 - Reply - Licenses.txt and Changelog files have been created. Will be updated with the information as files added.
 
 # Henry comments 13/April
-- Still no SIDs in this file. (Done)
+- Still no SIDs in this file. (Reply : Done)
 - Not enough commits + changelog items to pass at this frequency.
 - I couldn't find your text-based data. Create a root folder "data/" and put all your JSON files in there.
-- You're still missing a licenses.txt file.  (Done) 
+- You're still missing a licenses.txt file.  (Reply : Done) 
