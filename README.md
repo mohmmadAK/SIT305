@@ -1,5 +1,21 @@
 # Isle of the Dead
 
+Group Project - Android RPG
+
+Mohmmad Alkhuzami : SID : 215421323
+Fayz Alakidy : SID : 213442252
+
+# Build and Run Instructions :
+
+Android Studio sets up new projects to deploy to the Android Emulator or a connected device with just a few clicks.
+To build and run the app, select Run > Run in the menu bar (or click Run  in the toolbar). 
+If it's the first time running the app, Android Studio asks you to select a deployment target. 
+Select a device to install and run the app.
+The Run  button compiles and installs the APK, but there are other options in the Build menu that can be used to compile parts or all of the project.
+Make Project - Makes all the modules
+Clean Project - Deletes all the intermediate or cached files
+Rebuild Project - Runs the Clean Project option and rebuilds to generate an apk file
+Build Apk - This builds an APK file of all the application modules in the current project.
 
 
 (Henry wants to see details in here, as well as a licenses.txt and changelog)
