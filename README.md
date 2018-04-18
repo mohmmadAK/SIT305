@@ -20,6 +20,8 @@ Group Project - Android RPG
 
 (Henry wants to see details in here, as well as a licenses.txt and changelog)
 
+- Reply - Licenses.txt and Changelog files have been created. Will be updated with the information as files added.
+
 # Henry comments 13/April
 - Still no SIDs in this file.
 - Not enough commits + changelog items to pass at this frequency.
