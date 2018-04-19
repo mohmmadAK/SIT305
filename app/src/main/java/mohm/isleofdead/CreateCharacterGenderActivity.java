@@ -1,4 +1,4 @@
-package isleofdead.mohm.isleofdead;
+package mohm.isleofdead;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -88,7 +88,7 @@ public class CreateCharacterGenderActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mp.release();
+                 
                         finish();
                     }
                 });
