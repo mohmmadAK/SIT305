@@ -17,6 +17,11 @@ Group Project - Android RPG
 - Rebuild Project - Runs the Clean Project option and rebuilds to generate an apk file
 - Build Apk - This builds an APK file of all the application modules in the current project.
 
+Project Directory structure:
+- Java files:       app\src\main\java\
+- Design & Layout Files :     app\src\main\res\layout
+- JSON files:      app\src\main\assets
+- Images : app\src\main\res\drawables
 
 (Henry wants to see details in here, as well as a licenses.txt and changelog)
 
