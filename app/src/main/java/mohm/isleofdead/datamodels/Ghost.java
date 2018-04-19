@@ -1,4 +1,4 @@
-package isleofdead.mohm.isleofdead.datamodels;
+package mohm.isleofdead.datamodels;
 
 
 public class Ghost extends CharacterActor
