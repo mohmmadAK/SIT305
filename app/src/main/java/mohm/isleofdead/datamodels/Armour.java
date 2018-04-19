@@ -1,4 +1,4 @@
-package isleofdead.mohm.isleofdead.datamodels;
+package mohm.isleofdead.datamodels;
 
 import android.media.Image;
 import java.io.Serializable;
