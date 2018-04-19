@@ -1,4 +1,4 @@
-package isleofdead.mohm.isleofdead;
+package mohm.isleofdead;
 
 import android.content.Context;
 import android.content.Intent;
