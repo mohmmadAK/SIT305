@@ -1,5 +1,4 @@
-package isleofdead.mohm.isleofdead.datamodels;
-
+package mohm.isleofdead.datamodels;
 
 import java.io.Serializable;
 
