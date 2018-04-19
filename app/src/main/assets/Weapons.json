@@ -1,0 +1,25 @@
+{
+    "about_file": "This file manages all of the weaponID to script associations for Isle of The Dead",
+
+    "loadWeapons": [
+        {
+            "weaponID" : "Sword",
+            "weaponImage" : "sword",
+            "weaponSound" : "sword_attack"
+            "weaponImpact" : 8
+        },
+        {
+            "weaponID" : "Gun",
+            "weaponImage" : "gun",
+            "weaponSound" : "gun_attack"
+            "weaponImpact" : 9
+        },
+        {
+            "weaponID" : "FireBomb",
+            "weaponImage" : "firebomb",
+            "weaponSound" : "firebomb_attack"
+            "weaponImpact" : 10
+        }
+        
+    ]
+}
