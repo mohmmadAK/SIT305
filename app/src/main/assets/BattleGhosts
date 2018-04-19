@@ -1,0 +1,18 @@
+{
+    "about_file": "This file manages all of the ghost type battles",
+
+    "loadBattleGhosts": [
+        {
+            "battleID" : "Old Woman Ghost",
+            "description" : "An old scary woman ghost attacks trying to bite",
+        },
+        {
+            "battleID" : "Old Man Ghost",
+            "description" : "Evil old man ghost tries to crush",
+        },
+		{
+			"battleID" : "Monster Ghost",
+            "description" : "Monster Ghost tries to burn alive with fire",
+		}
+    ]
+}
