@@ -21,6 +21,7 @@ import isleofdead.mohm.isleofdead.datamodels.User;
 
 import static android.graphics.Color.WHITE;
 
+//Activity to launch the game
 public class GameStartActivity extends AppCompatActivity {
 
     public MediaPlayer mp;
