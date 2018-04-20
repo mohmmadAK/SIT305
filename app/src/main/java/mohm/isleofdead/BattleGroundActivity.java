@@ -71,7 +71,7 @@ public class BattleGroundActivity extends AppCompatActivity {
         userHealthProgress.setProgress(user.current_health);
         userHealthProgress.getProgressDrawable().setColorFilter(Color.rgb(0,200,0), PorterDuff.Mode.SRC_IN);
         if(user.gender.equalsIgnoreCase("female")){
-            int id = getResources().getIdentifier("female_high_health", "drawable", getPackageName());
+            int id = getResources().getIdentifier("female_char", "drawable", getPackageName());
             userImage.setImageResource(id);
         }
 
