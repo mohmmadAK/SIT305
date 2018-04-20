@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textchooseaction"
         android:layout_marginBottom="46dp"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:fontFamily="serif"
         android:textStyle="normal|bold"
         android:layout_alignBottom="@+id/attackButton"
