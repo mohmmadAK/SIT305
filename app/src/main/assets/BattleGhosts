@@ -4,11 +4,11 @@
     "loadBattleGhosts": [
         {
             "battleID" : "Old Woman Ghost",
-            "description" : "An old scary woman ghost attacks trying to bite",
+            "description" : "An old scary woman ghost attacks trying to bite and kill",
         },
         {
             "battleID" : "Old Man Ghost",
-            "description" : "Evil old man ghost tries to crush",
+            "description" : "Evil old man ghost tries to crush and kill",
         },
 		{
 			"battleID" : "Monster Ghost",
