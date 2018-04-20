@@ -41,201 +41,16 @@ public class BattleGroundActivity extends AppCompatActivity {
     Boolean userLose = false;
 
 
-    public void actionChosen(){
-        attackButton.setVisibility(View.INVISIBLE);
-        runButton.setVisibility(View.INVISIBLE);
-        chooseActiontext.setVisibility(View.INVISIBLE);
-    }
-    public void turnFinish(){
-        attackButton.setVisibility(View.VISIBLE);
-        runButton.setVisibility(View.VISIBLE);
-        chooseActiontext.setVisibility(View.VISIBLE);
-    }
-
-    public void turnSequence(final boolean playerFirst){
-        final MediaPlayer swordAttackSound = MediaPlayer.create(this, R.raw.sword_attack);
-        final MediaPlayer enemyPunchSound = MediaPlayer.create(this, R.raw.enemy_punch);
-
-        if(playerFirst){
-            swordAttackSound.start();
-            changeEnemyHealthBar(enemy.current_health - (int)Math.max(user.strength*3-enemy.defense/2,1));
-            userAttackAnimation();
-        }else{
-            enemyPunchSound.start();
-            changeUserHealthBar(user.current_health - (int)Math.max(enemy.strength*3-user.defense/2,1));
-            enemyAttackAnimation();
-        }
-
-        final Handler handler = new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println("Sleep not working:" + userHealthProgress.getProgress());
-                }
-                if(user.current_health == 0){
-                    userLose = true;
-                    swordAttackSound.release();
-                    enemyPunchSound.release();
-                    return;
-                }else if(enemy.current_health == 0){
-                    userWin = true;
-                    swordAttackSound.release();
-                    enemyPunchSound.release();
-                    return;
-                }
-                if(playerFirst) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (Exception e) {
-                        System.out.println("Sleep not working:" + userHealthProgress.getProgress());
-                    }
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            enemyPunchSound.start();
-                            changeUserHealthBar(user.current_health - (int)Math.max(enemy.strength*3-user.defense/2,1));
-                            enemyAttackAnimation();
-                        }
-                    });
-
-                }else{
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            swordAttackSound.start();
-                            changeEnemyHealthBar(enemy.current_health - (int)Math.max(user.strength*3-enemy.defense/2,1));
-                            userAttackAnimation();
-                        }
-                    });
-
-                }
-                try {
-                    Thread.sleep(2000);
-                } catch (Exception e) {
-                    System.out.println("Sleep not working:" + userHealthProgress.getProgress());
-                }
-                swordAttackSound.release();
-                enemyPunchSound.release();
-                if(user.current_health == 0){
-                    userLose = true;
-                    return;
-                }else if(enemy.current_health == 0){
-                    userWin = true;
-                    return;
-                }
-            }
-        }).start();
-    }
-
-    public void healthBarColorMonitor(){
-
-    }
-
-    public void changeUserHealthBar(final int n){
-
-    }
-
-    public void changeEnemyHealthBar(final int n){
-
-    }
-
-    public void userAttackAnimation(){
-        final Handler handler = new Handler();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    Thread.sleep(400);
-                }catch (Exception e){
-                    System.out.println("Sleep not working:"+userHealthProgress.getProgress());
-                }
-
-                int i = 11;
-                while(i <= 31){
-                    final int temp = i;
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            String name = "battle_slash"+temp;
-                            int id = getResources().getIdentifier(name, "drawable", getPackageName());
-                            enemyHitImage.setImageResource(id);
-
-                        }
-                    });
-                    try{
-                        Thread.sleep(100);
-                    }catch (Exception e){
-                        System.out.println("Sleep not working:"+userHealthProgress.getProgress());
-                    }
-                    i++;
-                }
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        int id = getResources().getIdentifier("battle_slash0", "drawable", getPackageName());
-                        enemyHitImage.setImageResource(id);
-                        turnFinish();
-                    }
-                });
-            }
-        }).start();
-    }
-
-    public void enemyAttackAnimation(){
-        final Handler handler = new Handler();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                int i = 0;
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        userHitImage.setVisibility(View.VISIBLE);
-                        //turnFinish();
-                    }
-                });
-                while(i <= 10){
-                    final int temp = i;
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            String name = "claw_attack"+temp;
-                            int id = getResources().getIdentifier(name, "drawable", getPackageName());
-                            userHitImage.setImageResource(id);
-
-                        }
-                    });
-                    try{
-                        Thread.sleep(100);
-                    }catch (Exception e){
-                        System.out.println("Sleep not working:"+userHealthProgress.getProgress());
-                    }
-                    i++;
-                }
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        userHitImage.setVisibility(View.INVISIBLE);
-                        //turnFinish();
-                    }
-                });
-            }
-        }).start();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_ground);
         user = (User) getIntent().getSerializableExtra("user");
-        enemy = (Ghost) getIntent().getSerializableExtra("enemy");
-        //bNum = (int) getIntent().getSerializableExtra("bNum");
+        user.current_health = 100;
+        //enemy = (Ghost) getIntent().getSerializableExtra("enemy");
+        enemy = new Ghost("Old Woman","old_woman_ghost",111,80,4,4,4,4);
+        enemy.current_health = 100;
+
         bNum = 1;
         userHPtext = (TextView)  findViewById(R.id.userHealthText);
         enemyHPtext = (TextView)  findViewById(R.id.enemyHealthText);
@@ -249,8 +64,8 @@ public class BattleGroundActivity extends AppCompatActivity {
         TextView hpLabel = (TextView) findViewById(R.id.HPLabel);
         hpLabel.setText(user.actor_name+"'s HP:");
         TextView enemeyHpLabel = (TextView) findViewById(R.id.enemyHPLabel);
-        //enemeyHpLabel.setText(enemy.actor_name+"'s HP:");
-        // Initialize stuff
+
+        // Initialize health values
         userHPtext.setText(user.current_health + " / " + user.max_health);
         userHealthProgress.setMax(user.max_health);
         userHealthProgress.setProgress(user.current_health);
@@ -260,12 +75,8 @@ public class BattleGroundActivity extends AppCompatActivity {
             userImage.setImageResource(id);
         }
 
-        //enemyHPtext.setText(enemy.current_health + " / " + enemy.base_health);
-        //enemyHealthProgress.setMax(enemy.base_health);
-        //enemyHealthProgress.setProgress(enemy.current_health);
         enemyHealthProgress.getProgressDrawable().setColorFilter(Color.rgb(0,200,0), PorterDuff.Mode.SRC_IN);
-        //int id = getResources().getIdentifier(enemy.imagename, "drawable", getPackageName());
-        //monsterImage.setImageResource(id);
+
         monsterImage.setImageResource(R.drawable.old_woman_ghost);
 
         //Roll the Dice
@@ -402,5 +213,191 @@ public class BattleGroundActivity extends AppCompatActivity {
         }).start();
 
     }
-}
 
+    public void actionChosen(){
+        attackButton.setVisibility(View.INVISIBLE);
+        runButton.setVisibility(View.INVISIBLE);
+        chooseActiontext.setVisibility(View.INVISIBLE);
+    }
+    public void turnFinish(){
+        attackButton.setVisibility(View.VISIBLE);
+        runButton.setVisibility(View.VISIBLE);
+        chooseActiontext.setVisibility(View.VISIBLE);
+    }
+
+    public void turnSequence(final boolean playerFirst){
+        final MediaPlayer swordAttackSound = MediaPlayer.create(this, R.raw.sword_attack);
+        final MediaPlayer enemyPunchSound = MediaPlayer.create(this, R.raw.enemy_punch);
+
+        if(playerFirst){
+            swordAttackSound.start();
+            enemy.current_health--;
+            userAttackAnimation();
+        }else{
+            enemyPunchSound.start();
+            user.current_health--;
+            enemyAttackAnimation();
+        }
+
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println("Sleep not working:" + userHealthProgress.getProgress());
+                }
+                if(user.current_health == 0){
+                    userLose = true;
+                    swordAttackSound.release();
+                    enemyPunchSound.release();
+                    return;
+                }else if(enemy.current_health == 0){
+                    userWin = true;
+                    swordAttackSound.release();
+                    enemyPunchSound.release();
+                    return;
+                }
+                if(playerFirst) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        System.out.println("Sleep not working:" + userHealthProgress.getProgress());
+                    }
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            enemyPunchSound.start();
+                            enemyAttackAnimation();
+                        }
+                    });
+
+                }else{
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            swordAttackSound.start();
+                            userAttackAnimation();
+                        }
+                    });
+
+                }
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    System.out.println("Sleep not working:" + userHealthProgress.getProgress());
+                }
+                swordAttackSound.release();
+                enemyPunchSound.release();
+                if(user.current_health == 0){
+                    userLose = true;
+                    return;
+                }else if(enemy.current_health == 0){
+                    userWin = true;
+                    return;
+                }
+            }
+        }).start();
+    }
+
+    public void healthBarColorMonitor(){
+
+    }
+
+    public void changeUserHealthBar(final int n){
+
+    }
+
+    public void changeEnemyHealthBar(final int n){
+
+    }
+
+    public void userAttackAnimation(){
+        final Handler handler = new Handler();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(400);
+                }catch (Exception e){
+                    System.out.println("Sleep not working:"+userHealthProgress.getProgress());
+                }
+
+                int i = 11;
+                while(i <= 31){
+                    final int temp = i;
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            String name = "battle_slash"+temp;
+                            int id = getResources().getIdentifier(name, "drawable", getPackageName());
+                            enemyHitImage.setImageResource(id);
+
+                        }
+                    });
+                    try{
+                        Thread.sleep(100);
+                    }catch (Exception e){
+                        System.out.println("Sleep not working:"+userHealthProgress.getProgress());
+                    }
+                    i++;
+                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int id = getResources().getIdentifier("battle_slash0", "drawable", getPackageName());
+                        enemyHitImage.setImageResource(id);
+                        turnFinish();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void enemyAttackAnimation(){
+        final Handler handler = new Handler();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                int i = 0;
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        userHitImage.setVisibility(View.VISIBLE);
+                        //turnFinish();
+                    }
+                });
+                while(i <= 10){
+                    final int temp = i;
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            String name = "claw_attack"+temp;
+                            int id = getResources().getIdentifier(name, "drawable", getPackageName());
+                            userHitImage.setImageResource(id);
+
+                        }
+                    });
+                    try{
+                        Thread.sleep(100);
+                    }catch (Exception e){
+                        System.out.println("Sleep not working:"+userHealthProgress.getProgress());
+                    }
+                    i++;
+                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        userHitImage.setVisibility(View.INVISIBLE);
+                        //turnFinish();
+                    }
+                });
+            }
+        }).start();
+    }
+
+}
