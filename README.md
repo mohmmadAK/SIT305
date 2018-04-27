@@ -32,3 +32,10 @@ Project Directory structure:
 - Not enough commits + changelog items to pass at this frequency. (Reply : Uploaded more changes and updated changelog file)
 - I couldn't find your text-based data. Create a root folder "data/" and put all your JSON files in there. (Reply : Adding json files in assets folder)
 - You're still missing a licenses.txt file.  (Reply : Done) 
+
+# Henry comments 27/April
+- I haven't seen any updates in quite a few days
+- your changelog needs a lot more work
+- Your data hasn't progressed enough given that we're at the end of Week 7.
+
+
