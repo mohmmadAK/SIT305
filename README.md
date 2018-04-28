@@ -34,8 +34,8 @@ Project Directory structure:
 - You're still missing a licenses.txt file.  (Reply : Done) 
 
 # Henry comments 27/April
-- I haven't seen any updates in quite a few days
-- your changelog needs a lot more work
-- Your data hasn't progressed enough given that we're at the end of Week 7.
+- I haven't seen any updates in quite a few days  (We were facing issues with some crashes and game load for level 2 changes, fixed some issues and commited)
+- your changelog needs a lot more work (Updated, will be updating more in next few days)
+- Your data hasn't progressed enough given that we're at the end of Week 7. (Working on it, will update in next few days).
 
 
