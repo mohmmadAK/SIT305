@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on http://keepachangelog.com/en/1.0.0/ and this project adheres to Semantic Versioning.
 
 
+0.0.6 - 2018-04-28
+
+Added
+
+- Updated level 2 game activity
+- Updated level 2 game layouts
+- Fixing issues for game load and crashes
+
+
 0.0.5 - 2018-04-20
 
 Added
