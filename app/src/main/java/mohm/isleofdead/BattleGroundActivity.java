@@ -1,4 +1,4 @@
-package mohm.isleofdead;
+package isleofdead.mohm.isleofdead;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -140,7 +140,8 @@ public class BattleGroundActivity extends AppCompatActivity {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(v.getContext(), GameStartActivity.class);
+                                //Intent intent = new Intent(v.getContext(), GameStartActivity.class);
+                                Intent intent = new Intent(v.getContext(), Level2Activity.class);
                                 intent.putExtra("battleData", "flee");
                                 intent.putExtra("user",user);
                                 startActivity(intent);
@@ -401,3 +402,4 @@ public class BattleGroundActivity extends AppCompatActivity {
     }
 
 }
+
