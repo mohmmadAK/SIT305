@@ -276,6 +276,7 @@ public class Inventory extends AppCompatActivity {
 
         toaster("Your game was successfully saved", 1000);
 
+        
     }
 
     public void onBackPressed(){
