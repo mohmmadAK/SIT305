@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on http://keepachangelog.com/en/1.0.0/ and this project adheres to Semantic Versioning.
 
 
-0.0.7 - 2018-05-03
+0.0.8 - 2018-05-07 [Fayz]
+
+Added
+
+- Game images updated
+- Fixed game navigation issues
+- Level 2 game screen working
+- Fixing game data
+
+
+0.0.7 - 2018-05-03 [Mohmmad]
 
 Added
 
@@ -16,7 +26,7 @@ Added
 - Working on game actions 
 
 
-0.0.6 - 2018-04-28
+0.0.6 - 2018-04-28  [Fayz]
 
 Added
 
@@ -25,7 +35,7 @@ Added
 - Fixing issues for game load and crashes
 
 
-0.0.5 - 2018-04-20
+0.0.5 - 2018-04-20  [Mohmmad]
 
 Added
 
@@ -38,7 +48,7 @@ Added
 
 
 
-0.0.4 - 2018-04-19
+0.0.4 - 2018-04-19 [Fayz]
 
 Added
 
@@ -48,7 +58,7 @@ Added
 - Sound effects and game/character images
 
 
-0.0.3 - 2018-04-19
+0.0.3 - 2018-04-19 [Mohmmad]
 
 Added
 
@@ -56,7 +66,7 @@ Added
 - User, Quest, Item, Weapon Ghost
 - Fixed package names
 
-0.0.2 - 2018-04-15
+0.0.2 - 2018-04-15  [Mohmmad]
 
 Added
 
@@ -66,7 +76,7 @@ Added
 - Added license file
 
 
-0.0.1 - 2018-03-31
+0.0.1 - 2018-03-31 [Mohmmad]
 
 Added
 
