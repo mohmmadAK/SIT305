@@ -101,6 +101,7 @@ public class Level2Activity extends AppCompatActivity {
         //checks to see if game was loaded or just created
         if (charName == null) {
             Intent loaded = getIntent();
+            
 
             charName = loaded.getStringExtra("The name");
             playerHunger = loaded.getIntExtra("hunger", 0);
