@@ -1,10 +1,13 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
 
 import android.media.Image;
 
 import java.io.Serializable;
 
+/**
+ * Class to represent a consumable item for class
+ */
 class ConsumeItem extends Item implements Serializable
 {
 
