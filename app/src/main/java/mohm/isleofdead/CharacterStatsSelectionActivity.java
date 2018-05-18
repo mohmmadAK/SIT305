@@ -9,22 +9,44 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import isleofdead.mohm.isleofdead.datamodels.User;
 
 import static android.graphics.Color.WHITE;
 
+/**
+ * Class for user to select the statistics like strength, willpower ,
+ * dexterity and other attributes before game start
+ */
 public class CharacterStatsSelectionActivity extends AppCompatActivity {
     public MediaPlayer buttonSound;
+
+    public User user;
+    public JSONObject gameJson;
+    public String gameJsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_stats_selection);
         Intent character_creation_stat = getIntent();
-        final User user = (User) getIntent().getSerializableExtra("user");
+
+        user = (User) getIntent().getSerializableExtra("user");
+        gameJsonString = getIntent().getStringExtra("gameJson");
+        try {
+            gameJson = new JSONObject(gameJsonString);
+        }catch (JSONException e){
+
+        }
+
+
         buttonSound = MediaPlayer.create(this, R.raw.button_press);
         final TextView spend_points_message = (TextView) findViewById(R.id.spendPointsMessage);
         spend_points_message.setVisibility(View.INVISIBLE);
+
+        //Set the user attributes selection text
         final TextView pointsRemaining = (TextView) findViewById(R.id.remainingPoints);
         pointsRemaining.setText("Points remaining: "+ user.current_addtional_stat_points);
         final TextView strength = (TextView) findViewById(R.id.strView);
@@ -275,8 +297,10 @@ public class CharacterStatsSelectionActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(v.getContext(), BattleGroundActivity.class);
+                    saveGameData(user);
+                    Intent intent = new Intent(v.getContext(), GameHomeMenuActivity.class);
                     intent.putExtra("user",user);
+                    intent.putExtra("gameJson", gameJson.toString());
                     buttonSound.start();
                     startActivity(intent);
                     finishAfterSound(buttonSound);
@@ -320,5 +344,27 @@ public class CharacterStatsSelectionActivity extends AppCompatActivity {
 
             }
         }).start();
+    }
+
+    /**
+     * Method to save the user's stats to game data json
+     * @param user
+     */
+    public void saveGameData(User user) {
+
+        try {
+            JSONObject userObject = gameJson.getJSONObject("User");
+            userObject.put("strength", user.strength);
+            userObject.put("defense", user.defense);
+            userObject.put("willpower", user.willpower);
+            userObject.put("dexterity", user.dexterity);
+            userObject.put("constitution", user.constitution);
+
+            getSharedPreferences("PREFS_NAME", MODE_PRIVATE).edit()
+                    .putString("gameJson", gameJson.toString()).commit();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
