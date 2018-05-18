@@ -1,4 +1,4 @@
-package mohm.isleofdead;
+package isleofdead.mohm.isleofdead;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -8,19 +8,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import isleofdead.mohm.isleofdead.datamodels.User;
 
 import static android.graphics.Color.WHITE;
 
+/**
+ * Class for user to choose the role character. 2 characters - 1 male and 1 female are presented.
+ */
 public class CreateCharacterGenderActivity extends AppCompatActivity {
     public MediaPlayer buttonSound;
+
+    public User user;
+    public JSONObject gameJson;
+    public String gameJsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_character_gender);
         Intent character_creation_sex = getIntent();
-        final User user = (User) getIntent().getSerializableExtra("user");
+
+        user = (User) getIntent().getSerializableExtra("user");
+        gameJsonString = getIntent().getStringExtra("gameJson");
+        try {
+            gameJson = new JSONObject(gameJsonString);
+        }catch (JSONException e){
+
+        }
+
         buttonSound = MediaPlayer.create(this, R.raw.button_press);
         Button male_button = (Button) findViewById(R.id.maleButton);
         male_button.setBackgroundResource(R.drawable.woodbutton);
@@ -31,8 +49,10 @@ public class CreateCharacterGenderActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 user.gender = "male";
-                Intent intent = new Intent(v.getContext(), BattleGroundActivity.class);
+                saveGameData(user, "male");
+                Intent intent = new Intent(v.getContext(), CharacterStatsSelectionActivity.class);
                 intent.putExtra("user",user);
+                intent.putExtra("gameJson", gameJson.toString());
                 buttonSound.start();
                 startActivity(intent);
                 finishAfterSound(buttonSound);
@@ -49,8 +69,10 @@ public class CreateCharacterGenderActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 user.gender = "female";
-                Intent intent = new Intent(v.getContext(), BattleGroundActivity.class);
+                saveGameData(user, "female");
+                Intent intent = new Intent(v.getContext(), CharacterStatsSelectionActivity.class);
                 intent.putExtra("user",user);
+                intent.putExtra("gameJson", gameJson.toString());
                 buttonSound.start();
                 startActivity(intent);
                 finishAfterSound(buttonSound);
@@ -88,13 +110,32 @@ public class CreateCharacterGenderActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                 
+                        mp.release();
                         finish();
                     }
                 });
 
             }
         }).start();
+    }
+
+    /**
+     * Save the user gender information to game data json
+     * @param user
+     * @param gender
+     */
+    public void saveGameData(User user, String gender) {
+
+        try {
+            JSONObject userObject = gameJson.getJSONObject("User");
+            userObject.put("gender", gender);
+
+            getSharedPreferences("PREFS_NAME", MODE_PRIVATE).edit()
+                    .putString("gameJson", gameJson.toString()).commit();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 
