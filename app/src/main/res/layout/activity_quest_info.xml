@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_menu_bg"
+    tools:context="isleofdead.mohm.isleofdead.QuestInfoActivity">
+
+    <TextView
+        android:id="@+id/quest1"
+        android:layout_width="327dp"
+        android:layout_height="94dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:text="Quest 1 : Kill the Conjuring Old Lady Ghost" />
+
+    <TextView
+        android:id="@+id/quest2"
+        android:layout_width="327dp"
+        android:layout_height="94dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/quest1"
+        android:text="Quest 2 : Wild Beat Monster needs to be eliminated" />
+
+    <TextView
+        android:id="@+id/quest3"
+        android:layout_width="327dp"
+        android:layout_height="94dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_below="@id/quest2"
+        android:text="Quest 3 : Get through all ghost enemies in tunnel to conquer Isle of Dead" />
+</android.widget.RelativeLayout>
