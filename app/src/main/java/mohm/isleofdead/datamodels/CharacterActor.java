@@ -1,10 +1,13 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
 
 import android.media.Image;
 
 import java.io.Serializable;
 
+/**
+ * Class to represent the role playing character in the game and attributes
+ */
 public class CharacterActor implements Serializable
 {
     public String actor_name;
