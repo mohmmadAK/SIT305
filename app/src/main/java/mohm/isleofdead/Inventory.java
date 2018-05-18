@@ -1,9 +1,7 @@
 package isleofdead.mohm.isleofdead;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
@@ -13,6 +11,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+/**
+ * Class to represent the Inventory objects for Tunnel Battle
+ */
 public class Inventory extends AppCompatActivity {
 
     ImageButton bread=null;
@@ -24,7 +25,7 @@ public class Inventory extends AppCompatActivity {
     ImageButton stats =null;
     ImageButton save =null;
 
-    //info to save and give to stats intent
+
     String charatcerName =null;
     int playerHunger = 0;
     int attackPower =0;
@@ -41,6 +42,7 @@ public class Inventory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
+        //Initialize the weapon images
         bread= (ImageButton) findViewById(R.id.ibBread);
         potion =(ImageButton) findViewById(R.id.ibPotion);
         sword =(ImageButton) findViewById(R.id.ibSword);
@@ -52,12 +54,11 @@ public class Inventory extends AppCompatActivity {
 
         ImageButton[] items = {bread, potion, sword, fire, bubble, teleport};
         Intent bag = getIntent();
-        final boolean[] boolItems = bag.getBooleanArrayExtra(Level2Activity.booInventory);
+        final boolean[] boolItems = bag.getBooleanArrayExtra(TunnelBattleActivity.booInventory);
 
         for(int x =0; x <6; x +=1) {
             itemUsed[x] = false;
 
-            //sets teh items image to question mark if the user did not pick it up
             if (boolItems[x] == false)
             {
                 items[x].setImageDrawable(getDrawable(R.drawable.question_mark));
@@ -69,7 +70,6 @@ public class Inventory extends AppCompatActivity {
             public void onClick(View v){
                 Intent charInfo = getIntent();
 
-                //getting info from mainGame activity
                 charatcerName = charInfo.getStringExtra("The name");
                 playerHunger = charInfo.getIntExtra("hunger", 0);
                 attackPower = charInfo.getIntExtra("attack power",0);
@@ -78,7 +78,7 @@ public class Inventory extends AppCompatActivity {
 
                 Intent stat = new Intent(Inventory.this, GameStatistics.class);
 
-                //these are the vaibles needed in the stats activity
+                //Battle Stats
                 stat.putExtra("name", charatcerName);
                 stat.putExtra("hunger", playerHunger);
                 stat.putExtra("attack", attackPower);
@@ -99,10 +99,10 @@ public class Inventory extends AppCompatActivity {
                 Intent charInfo = getIntent();
 
                 if(charInfo.getIntExtra("player HP", 0) <= 0){
-                    toaster("There is not a game to save", 1500);
+                    displayToast("Game save in progress. Check again", 1500);
                 }
                 else{
-                    // saving all the data
+                    // saving all the Tunnel battle data to prefs
                     myEditor.putString("player name",charInfo.getStringExtra("The name"));
                     myEditor.putInt("player hunger", charInfo.getIntExtra("hunger", 0));
                     myEditor.putInt("player attack",charInfo.getIntExtra("attack power",0));
@@ -123,12 +123,12 @@ public class Inventory extends AppCompatActivity {
                     myEditor.putInt("background counter", charInfo.getIntExtra("background counter", 0));
                     myEditor.apply();
 
-                    toaster("Your game was successfully saved", 1000);
+                    displayToast("Game data was successfully saved", 1000);
                 }
             }});
     }
 
-    public void toaster(String message, int length){
+    public void displayToast(String message, int length){
 
         final Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         toast.show();
@@ -220,63 +220,6 @@ public class Inventory extends AppCompatActivity {
             itemUsed[5]= true;
         }
 
-    }
-
-    public void openStats() {
-        //this method is not working so i created a on click listener
-
-        Intent charInfo = getIntent();
-
-        //getting info from mainGame activity
-        charatcerName = charInfo.getStringExtra("The name");
-        playerHunger = charInfo.getIntExtra("hunger", 0);
-        attackPower = charInfo.getIntExtra("attack",0);
-        playerHP = charInfo.getIntExtra("player HP", 0);
-        enemysKilled = charInfo.getIntExtra("enemys killed", 0);
-
-        Intent stat = new Intent(Inventory.this, GameStatistics.class);
-
-        //these are the varibles needed in the stats activity
-        stat.putExtra("name", charatcerName);
-        stat.putExtra("hunger", playerHunger);
-        stat.putExtra("attack", attackPower);
-        stat.putExtra("hp", playerHP);
-        stat.putExtra("killed", enemysKilled);
-
-        startActivity(stat);
-    }
-
-    public void saveGame() {
-        //thsi method was is not working so i created a on click listener
-
-        Intent charInfo = getIntent();
-
-        SharedPreferences save = getSharedPreferences("Saved Progress", MODE_PRIVATE);
-        SharedPreferences.Editor myEditor = save.edit();
-
-        //saving all the data
-        myEditor.putString("player name",charInfo.getStringExtra("The name"));
-        myEditor.putInt("player hunger", charInfo.getIntExtra("hunger", 0));
-        myEditor.putInt("player attack",charInfo.getIntExtra("attack power",0));
-        myEditor.putInt("Health",charInfo.getIntExtra("player HP", 0));
-        myEditor.putInt("enemys killed",charInfo.getIntExtra("enemys killed", 0));
-        myEditor.putInt("character number", charInfo.getIntExtra("character number", 0));
-        myEditor.putInt("action counter", charInfo.getIntExtra("action counter",0));
-        myEditor.putInt("action defense", charInfo.getIntExtra("player defence",0));
-        myEditor.putInt("map", charInfo.getIntExtra("map",0));
-        myEditor.putInt("map dimitions", charInfo.getIntExtra("mapDim",0));
-        myEditor.putInt("map dimetion value", charInfo.getIntExtra("mapDimValue",0));
-        myEditor.putBoolean("inventory", charInfo.getBooleanExtra("Inventory", true));
-        myEditor.putBoolean("in battle", charInfo.getBooleanExtra("in battle", true));
-        myEditor.putInt("enemy attack", charInfo.getIntExtra("enemy attack",0));
-        myEditor.putInt("enemy health", charInfo.getIntExtra("enemy health",0));
-        myEditor.putInt("enemy number", charInfo.getIntExtra("enemy number",0));
-        myEditor.putInt("bubble", charInfo.getIntExtra("bubble",0));
-        myEditor.apply();
-
-        toaster("Your game was successfully saved", 1000);
-
-        
     }
 
     public void onBackPressed(){
