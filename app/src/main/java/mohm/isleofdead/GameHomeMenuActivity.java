@@ -1,8 +1,8 @@
 package isleofdead.mohm.isleofdead;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import isleofdead.mohm.isleofdead.datamodels.User;
 
 import static android.graphics.Color.WHITE;
 
+
+/**Class to represent the Game home Menu selection options**/
 
 public class GameHomeMenuActivity extends Activity {
 
@@ -24,44 +26,75 @@ public class GameHomeMenuActivity extends Activity {
     public MediaPlayer buttonSound;
     public MediaPlayer townMusic;
 
+    public User user;
+    public JSONObject gameJson;
+    public String gameJsonString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_home_menu);
 
-        final User user = (User) getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra("user");
+        gameJsonString = getIntent().getStringExtra("gameJson");
+        try {
+            if(null != gameJsonString) {
+                gameJson = new JSONObject(gameJsonString);
+            } else {
+                SharedPreferences pref = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
+                gameJsonString = pref.getString("gameJson", null);
+                gameJson = new JSONObject(gameJsonString);
+            }
+        }catch (JSONException e){
+
+        }
 
         buttonSound  = MediaPlayer.create(this, R.raw.button_press);
         townMusic = MediaPlayer.create(this, R.raw.background_music);
         townMusic.setLooping(true);
         townMusic.start();
 
-        if(user.autoSave)
-        {
-            if(save(user,"savefile.txt"))
-            {
-               // Toast autoSave = Toast.makeText(getApplicationContext(),"Autosaving...",Toast.LENGTH_SHORT);
-                //autoSave.show();
-            }
-        }
+        saveGameData(user);
 
-        Button dungeonButton = (Button) findViewById(R.id.dungeonButton);
+
+        Button isleButton = (Button) findViewById(R.id.isleButton);
         ImageView titleView = (ImageView) findViewById(R.id.regionTitleView);
         titleView.setVisibility(View.VISIBLE);
 
 
-        dungeonButton.setBackgroundResource(R.drawable.woodbutton);
-        dungeonButton.setTextColor(WHITE);
-        dungeonButton.setOnClickListener(new View.OnClickListener() {
+        isleButton.setBackgroundResource(R.drawable.woodbutton);
+        isleButton.setTextColor(WHITE);
+        isleButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 buttonSound.start();
                 townMusic.release();
-                if(user.current_health > user.max_health) user.current_health = user.max_health;
-                Intent intent = new Intent(getApplicationContext(), BattleGroundActivity.class);
+                if(user.current_health > user.max_health) {
+                    user.current_health = user.max_health;
+                }
+                Intent intent = new Intent(getApplicationContext(), IsleActivity.class);
                 intent.putExtra("battleData", "na");
                 intent.putExtra("user", user);
+                intent.putExtra("gameJson", gameJson.toString());
+                startActivity(intent);
+                finishAfterSound(buttonSound);
+            }
+        });
+
+        Button questButton = (Button) findViewById(R.id.questBoard);
+        questButton.setBackgroundResource(R.drawable.woodbutton);
+        questButton.setTextColor(WHITE);
+
+        questButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                buttonSound.start();
+                townMusic.release();
+
+                Intent intent = new Intent(getApplicationContext(), QuestInfoActivity.class);
+                intent.putExtra("user", user);
+                intent.putExtra("gameJson", gameJson.toString());
                 startActivity(intent);
                 finishAfterSound(buttonSound);
             }
@@ -85,25 +118,16 @@ public class GameHomeMenuActivity extends Activity {
                         finish();
                     }
                 });
-
             }
         }).start();
     }
 
 
-    public Boolean save (User user, String filename)
-    {
-        FileOutputStream fos = null;
-        try {
-            fos = getApplicationContext().openFileOutput(filename, Context.MODE_PRIVATE);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(user);
-            os.close();
-            fos.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    /**Method to save the game data json string to shared preferences**/
+
+    public void saveGameData(User user) {
+
+            getSharedPreferences("PREFS_NAME", MODE_PRIVATE).edit()
+                    .putString("gameJson", gameJson.toString()).commit();
     }
 }
