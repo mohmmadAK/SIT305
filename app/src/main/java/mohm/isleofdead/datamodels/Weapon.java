@@ -1,9 +1,12 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
 import android.media.Image;
 
 import java.io.Serializable;
 
+/**
+ * Class to represent a weapon in the game
+ */
 public class Weapon extends Item implements Serializable
 {
 
