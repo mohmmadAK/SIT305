@@ -1,16 +1,20 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
+
 
 import java.io.Serializable;
 
+/**
+ * Quest class to represent a Quest in the game
+ */
 public class Quest implements Serializable
 {
-    int quest_id;
+    public int quest_id;
     String quest_name;
     String quest_description;
     String item_name;
     int count;
     Boolean isActive;
-    Boolean isComplete;
+    public Boolean isComplete;
     int get_reward;
     Item item_reward;
 
