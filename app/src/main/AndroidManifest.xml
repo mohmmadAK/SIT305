@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameStartActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,15 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CreateCharacterNameActivity" />
         <activity android:name=".CreateCharacterGenderActivity" />
-        <activity android:name=".BattleGroundActivity"></activity>
+        <activity android:name=".BattleGroundActivity" />
+        <activity android:name=".TunnelBattleActivity" />
+        <activity android:name=".CreateCharacter" />
+        <activity android:name=".Inventory" />
+        <activity android:name=".CharacterStatsSelectionActivity" />
+        <activity android:name=".GameHomeMenuActivity" />
+        <activity android:name=".IsleActivity" />
+        <activity android:name=".GameStartActivity" />
+        <activity android:name=".QuestInfoActivity"></activity>
     </application>
 
 </manifest>
