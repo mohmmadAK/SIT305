@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on http://keepachangelog.com/en/1.0.0/ and this project adheres to Semantic Versioning.
 
+0.0.10 - 2018-05-18 [Mohammad]
+
+Added
+
+- Fixed UI elements
+- Game logic, Data json saving, parsing
+- Fixed crashes
+- Added comments to code
+- Testing
+
+0.0.9 - 2018-05-16 [Fayz]
+
+Added
+
+- Added more game logic and navigation
+- Fixed defects
+
 
 0.0.8 - 2018-05-07 [Fayz]
 
