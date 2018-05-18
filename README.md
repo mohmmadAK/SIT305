@@ -38,4 +38,11 @@ Project Directory structure:
 - your changelog needs a lot more work (Updated, will be updating more in next few days)
 - Your data hasn't progressed enough given that we're at the end of Week 7. (Modifying the data set and fixing few issues. Will have more commits today and tomorrow).
 
+# Mohmmad Submit comments - 18th may 
+The Game Recording is present in the app folder along with changelog, license document and license attribution and readme text files. Marking justification document is also present in same folder.
+
+The game recording video is slightly more than 5 mins. Since i was having trouble with audio voice recording with too much disturbance i have shown the text on document along with the demo.
+
+The App Store internal closed testing published link - https://play.google.com/apps/internaltest/4697949534637288903
+
 
