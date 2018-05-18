@@ -1,8 +1,11 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
 import android.media.Image;
 import java.io.Serializable;
 
+/**
+ * Item represents any item in the game
+ */
 public class Item implements Serializable {
 
     String name;
