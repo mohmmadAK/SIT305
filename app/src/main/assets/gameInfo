@@ -1,0 +1,100 @@
+{
+  "User": {
+    "name": "empty",
+    "type": "user",
+    "gender": "null",
+    "strength": 5,
+    "defense": 5,
+    "willpower": 5,
+    "dexterity": 5,
+    "constitution": 5,
+    "max_health": 100,
+    "current_health": 50,
+    "battledata":"lose"
+  },
+  "Ghosts": [
+    {
+      "id": 111,
+      "name": "Old Woman",
+      "imagename": "old_woman_ghost",
+      "basehealth": 100,
+      "currenthealth": 100,
+      "strength": 5,
+      "dexterity" : 5,
+      "defense" : 5,
+      "willpower" : 5
+    },
+    {
+      "id": 222,
+      "name": "Monster",
+      "imagename": "monstor_ghost",
+      "basehealth": 200,
+      "currenthealth": 200,
+      "strength": 10,
+      "dexterity" : 10,
+      "defense" : 10,
+      "willpower" : 10
+    }
+  ],
+  "levels": [
+    {
+      "name": "Conjuring",
+      "num": "1"
+    },
+    {
+      "name": "BigMonster",
+      "num": "2"
+    },
+    {
+      "name": "TunnelBattle",
+      "num": "3"
+    }
+  ],
+  "Quest1Story": {
+    "name": "Conjuring Ghost",
+    "ID": 1,
+    "speech": [
+      {
+        "char": "Take that old woman. Go back to your grave!",
+        "enemy": "I will conquer your island"
+      },
+      {
+        "char": "Be prepare to die",
+        "enemy": "Face my fury!"
+      }
+    ]
+  },
+  "Quest2Story": {
+    "name": "Wild Monster",
+    "ID": 2,
+    "speech": [
+      {
+        "char": "Die Wild Monster",
+        "enemy": "Watch me kill you"
+      },
+      {
+        "text": "You will not succeed. Take this and perish",
+        "option1": "Haha, you underestimate my powers!"
+      }
+    ]
+  },
+  "Quest3Story": {
+    "name": "Tunnel Battle",
+    "ID": 3,
+    "speech": [
+      {
+        "char": "Who is that?",
+        "enemy": "You are trapped in the tunnel! You will die here!"
+      },
+      {
+        "text": "No one can stop me reclaiming the island. I will kill you all",
+        "option1": "We will dig your grave here! Join us human!"
+      }
+    ]
+  }
+}
+
+
+
+
+
