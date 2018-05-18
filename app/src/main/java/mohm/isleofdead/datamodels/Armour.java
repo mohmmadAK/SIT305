@@ -1,8 +1,11 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
 import android.media.Image;
 import java.io.Serializable;
 
+/**
+ * Class to represent the Armour used
+ */
 public class Armour extends Item implements Serializable
 {
 
@@ -20,3 +23,4 @@ public class Armour extends Item implements Serializable
         return stats;
     }
 }
+
