@@ -1,16 +1,11 @@
 package isleofdead.mohm.isleofdead;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.preference.EditTextPreference;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -104,7 +99,7 @@ public class CreateCharacter extends AppCompatActivity {
         if(characterName == null|| characterName == ""){
             toaster("You much choose a character name", 1500);
         }else {
-            Intent game = new Intent(this, Level2Activity.class);
+            Intent game = new Intent(this, TunnelBattleActivity.class);
 
             game.putExtra(name, characterName);
             game.putExtra(charactNum, characterNum);
