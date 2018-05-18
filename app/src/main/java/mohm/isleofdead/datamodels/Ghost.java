@@ -1,9 +1,11 @@
-package mohm.isleofdead.datamodels;
+package isleofdead.mohm.isleofdead.datamodels;
 
+
+/** Class to represent a Ghost object of the game with attributes**/
 
 public class Ghost extends CharacterActor
 {
-    public  int mob_id;
+    public  int id;
     public String imagename;
 
     public Ghost(String name,String image_name,int id,int hp, int str, int def ,int wil, int dex)
@@ -17,7 +19,7 @@ public class Ghost extends CharacterActor
         defense       = def;
         willpower     = wil;
         type          = "ghost";
-        mob_id        = id;
+        this.id        = id;
     }
 
     public void addMove(String move)
