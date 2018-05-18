@@ -10,7 +10,7 @@ public class GameStatistics extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_game__statistics);
 
         TextView name =(TextView) findViewById(R.id.tvCharacterName);
         TextView attack =(TextView) findViewById(R.id.tvAttackPower);
