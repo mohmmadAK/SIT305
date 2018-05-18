@@ -1,4 +1,4 @@
-package mohm.isleofdead;
+package isleofdead.mohm.isleofdead;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
